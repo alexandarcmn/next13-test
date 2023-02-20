@@ -1,8 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
-import requestIp from 'request-ip'
+import { NextResponse } from "next/server";
+import requestIp from "request-ip";
 
 const fetchPosts = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {next: { revalidate: 60 },});
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    next: { revalidate: 60 },
+  });
   const data = await res.json();
   console.log("----------------fetchPosts222222222");
   return data;
@@ -16,11 +18,13 @@ export async function middleware(req) {
   // if (request.nextUrl.pathname.startsWith("/promotions")) {
   //   return NextResponse.rewrite(new URL("/promotions-2", request.url));
   // }
-  console.log("----middleware", req.nextUrl.pathname, req.headers);
-  
+  // console.log("----middleware", req.nextUrl);
+
   // redirect the request path to new given path
   // only for bellow defined paths in config
   // return NextResponse.redirect(new URL("/promotions-2", request.url));
+  // return (req.nextUrl.searchParams = new URLSearchParams({ name: "test" }));
+  // return NextResponse;
 }
 
 // matcher, if present, is a glob pattern that matches the request path
